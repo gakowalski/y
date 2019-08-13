@@ -1,17 +1,25 @@
 <?php
 
-function info($text) {
+function echo_line($text) {
     echo "$text\n";
 }
 
 function author() {
-    info('Grzegorz Kowalski');
+    echo_line('Grzegorz Kowalski');
 }
 
 if ($argc < 2)
     return;
 
-if (function_exists($argv[1])) {
-    $fun = $argv[1];
-    $fun();
+$args = $argv;
+
+$y_full_path = array_shift($args);
+$function = array_shift($args);
+
+if (function_exists($function)) {
+    switch (count($args)) {
+        case 0: $function(); break;
+        case 1: $function($args[0]); break;
+        default: $function($args);
+    }
 }
