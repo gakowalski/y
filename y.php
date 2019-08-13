@@ -20,6 +20,6 @@ if (function_exists($function)) {
     switch (count($args)) {
         case 0: $function(); break;
         case 1: $function($args[0]); break;
-        default: $function($args);
+        default: call_user_func_array($function, $args);
     }
 }
