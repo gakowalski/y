@@ -8,6 +8,19 @@ function author() {
     echo_line('Grzegorz Kowalski');
 }
 
+function y($what_info = null) {
+    global $y_full_path;
+    switch ($what_info) {
+        case 'dir':
+        case 'directory':
+        case 'folder':
+            return dirname($y_full_path);
+        case 'script':
+        default: 
+            return $y_full_path;
+    }
+}
+
 if ($argc < 2)
     return;
 
@@ -17,9 +30,6 @@ $y_full_path = array_shift($args);
 $function = array_shift($args);
 
 if (function_exists($function)) {
-    switch (count($args)) {
-        case 0: $function(); break;
-        case 1: $function($args[0]); break;
-        default: call_user_func_array($function, $args);
-    }
+    $return_value = count($args) ? call_user_func_array($function, $args) : $function();
+    echo $return_value;
 }
