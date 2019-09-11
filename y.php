@@ -50,16 +50,17 @@ function wordpress() {
     eval($defines);
     if (!empty($prefix)) eval($prefix);
 
+    echo_line("new mysqli('".DB_HOST."', '".DB_USER."', '".DB_PASSWORD."', '".DB_NAME."');");
+    echo_line("\$table_prefix = '$table_prefix';");
+
+
     $link = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
     if ($link->connect_error) {
         echo_line($link->connect_error());
         exit;
     } else {
         $link->set_charset('utf8');
-        echo_line($table_prefix);
         $query = "select * from {$table_prefix}users";
-        var_dump($query);
-        var_dump($link->query($query));
     }
     $link->close();
 }
