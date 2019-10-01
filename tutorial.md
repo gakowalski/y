@@ -1,3 +1,20 @@
+## Using aliases
+
+* `y alias new_name old_name` - general alias syntax
+
+Example: create alias for current folder
+
+```
+cd /var/www/html
+y alias html `pwd`
+```
+
+Example: use alias to change folder
+
+```
+cd `y alias html`
+```
+
 ## Copying and downloading files
 
 ```

@@ -43,6 +43,14 @@ function alias($alias, $real_name = null) {
     return $real_name;
 }
 
+function find($pattern, $where = '.') {
+    echo "grep -rn $where  -e '$pattern'";
+}
+
+function replace($from, $to, $where = './') {
+    echo "find $where -type f -exec sed -i 's/$from/$to/g' {} \;";
+}
+
 function wordpress() {
     $defines = `cat wp-config.php | grep define\(`;
     $prefix = `cat wp-config.php | grep table_prefix`;
